@@ -55,20 +55,6 @@ configurations {
     runtimeOnly.extendsFrom(modRuntimeOnly)
 }
 
-// Fix for GitHub Actions: Exclude ARM native libraries that don't exist
-configurations.all {
-    resolutionStrategy {
-        eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'org.lwjgl' && details.requested.name.startsWith('lwjgl')) {
-                def classifier = details.requested.classifier
-                if (classifier && (classifier.contains('arm64') || classifier.contains('arm32'))) {
-                    details.useVersion('none')
-                }
-            }
-        }
-    }
-}
-
 unimined.minecraft {
     version "1.12.2"
 
