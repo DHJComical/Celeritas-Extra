@@ -25,6 +25,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Execute Gradle build
         run: ./gradlew build
+        env:
+          OSARCH: x86_64
 
       - uses: ncipollo/release-action@v1.16.0
         with:
